@@ -1,0 +1,54 @@
+CREATE TABLE tbl_cliente(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR (60) NULL,
+    identificacion_cedula VARCHAR (60) NULL
+    
+    
+CREATE TABLE tbl_Vehiculos(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    modelo VARCHAR (5)  NOT NULL,
+    color VARCHAR (20) NOT NULL,
+    disponible VARCHAR (40) NOT NULL
+    
+)
+
+
+CREATE TABLE tbl_automovil(
+    id  INT AUTO_INCREMENT PRIMARY KEY,
+    marca VARCHAR (30) NOT NULL,
+    id_Vehiculos INT NOT NULL,
+    FOREIGN KEY (id_Vehiculo) REFERENCES tbl_vehiculos(id)
+    
+)
+
+
+CREATE TABLE tbl_motocicleta (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    marca VARCHAR (40) NOT NULL,
+    cantidad_ruedas  int (40)  NOT null,
+    id_Vehiculos INT NOT NULL,
+    FOREIGN KEY (id_Vehiculos) REFERENCES tbl_Vehiculos (id)
+    
+    
+)
+
+
+CREATE TABLE concesionario(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR (50) NOT NULL,
+    telefono VARCHAR (20) NOT NULL,
+    direccion VARCHAR (20) NOT NULL,
+    id_cliente INT  NOT NULL,
+    FOREIGN KEY (id_cliente) REFERENCES tbl_cliente (id)
+
+)
+
+
+CREATE TABLE tbl_Vehiculos_concesionario(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_Vehiculos INT NOT NULL,
+    id_concesionario INT NOT NULL,
+    FOREIGN KEY (id_Vehiculos) REFERENCES tbl_Vehiculos(id),
+    FOREIGN KEY (id_concesionario) REFERENCES concesionario(id)
+
+)
